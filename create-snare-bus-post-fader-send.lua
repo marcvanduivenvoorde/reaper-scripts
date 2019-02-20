@@ -20,8 +20,8 @@ function main()
     reaper.SetTrackColor(currentTrack, 26316)
 
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
-    trackName = reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "")
-    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", trackName .. "__dr__", "", true)
+    trackName = reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME")
+    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", trackName .. "__dr__", true)
 
     if (sendIndex == 0) then
         reaper.ShowMessageBox('Could not create send.')

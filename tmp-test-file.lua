@@ -1,6 +1,6 @@
 package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;".. package.path
 
-trackFinder = require("TrackFinder")
+trackFinder = require("libs.TrackFinder")
 
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track

@@ -1,3 +1,4 @@
+package.path = package.path .. ';/Users/marcvanduivenvoorde/Documents/workspace/reaper-scripts/?.lua'
 findTrack = require("libraries.findTrack")
 
 function main()

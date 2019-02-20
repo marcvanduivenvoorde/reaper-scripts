@@ -1,3 +1,6 @@
+package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;".. package.path
+
+
 -- find a track by it's name, show error and return false when not found
 function findTrack.find(trackName)
     for trackId = 0, reaper.CountTracks(0) - 1 do

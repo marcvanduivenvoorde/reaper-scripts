@@ -66,3 +66,5 @@ function trackDecorator.decorate(currentTrack, color, name)
     reaper.SetTrackColor(currentTrack, color)
     reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", name, true)
 end
+
+return trackDecorator

@@ -60,7 +60,7 @@ function trackDecorator.decorateVocal(currentTrack)
 end
 
 function trackDecorator.addToVcaGroup(currentTrack, group)
-    reaper.GetSetTrackGroupMembership(currentTrack, group, 0, VOLUME_VCA_SLAVE)
+    reaper.GetSetTrackGroupMembership(currentTrack, group, VOLUME_VCA_SLAVE)
 end
 
 function trackDecorator.createPostFaderSend(currentTrack, receivingTrack)

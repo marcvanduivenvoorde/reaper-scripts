@@ -17,7 +17,7 @@ function main()
         reaper.showMessageBox('Coud not create send.')
     end
 
-    reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, I_SENDMODE, 0)
+    reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, "I_SENDMODE", 0)
 end
 
 reaper.defer(main)

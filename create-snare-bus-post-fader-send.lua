@@ -20,7 +20,7 @@ function main()
     reaper.SetTrackColor(currentTrack, 26316)
 
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
-    trackName = reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME")
+    trackName = reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "", false)
     reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", trackName .. "__dr__", true)
 
     if (sendIndex == 0) then

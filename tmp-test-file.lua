@@ -11,10 +11,6 @@ function main()
 
     trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
     trackDecorator.decorateSnare(currentTrack)
-
-    if (sendIndex == 0) then
-        reaper.ShowMessageBox('Could not create send.')
-    end
 end
 
 reaper.defer(main)

@@ -5,9 +5,11 @@ trackDecorator.colors.drums = 26316
 trackDecorator.colors.guitars = 8849466
 trackDecorator.colors.bass = 6293644
 trackDecorator.colors.vocals = 12619858
+trackDecorator.vca.drums = "Group 1"
 
 function trackDecorator.decorateSnare(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
+    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'snare __dr__')
 end
 
@@ -54,6 +56,10 @@ end
 function trackDecorator.decorateVocal(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal __vox__')
+end
+
+function trackDecorator.addToVcaGroup(currentTrack, group)
+    reaper.GetSetTrackGroupMembership(currentTrack, group, 0, VOLUME_VCA_SLAVE)
 end
 
 function trackDecorator.createPostFaderSend(currentTrack, receivingTrack)

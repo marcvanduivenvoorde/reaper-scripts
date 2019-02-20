@@ -1,6 +1,7 @@
 local trackDecorator = {}
 
 trackDecorator.colors = {}
+trackDecorator.vca = {}
 trackDecorator.colors.drums = 26316
 trackDecorator.colors.guitars = 8849466
 trackDecorator.colors.bass = 6293644

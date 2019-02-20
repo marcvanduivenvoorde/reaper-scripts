@@ -12,17 +12,19 @@ function findTrack(trackName)
 
     return false
 end
+
 function main()
     receivingTrack = findTrack('snare-bus __dr__')
     currentTrack = reaper.GetSelectedTrack(0, 0)
 
-    reaper.SetTrackColor(currentTrack, 1)
-
+    reaper.SetTrackColor(currentTrack, 26316)
 
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
+    trackName = reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "")
+    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", trackName .. "__dr__", "", true)
 
     if (sendIndex == 0) then
-        reaper.ShowMessageBox('Coud not create send.')
+        reaper.ShowMessageBox('Could not create send.')
     end
 
     reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, "I_SENDMODE", 0)

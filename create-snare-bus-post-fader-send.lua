@@ -1,20 +1,28 @@
-require "findTrack";
+function findTrack(trackName)
+    for trackId = 0, reaper.CountTracks(0) - 1 do
+        track = reaper.GetTrack(0, trackId)
 
-function main()
-    receivingTrack = findTrack('snare-bus __dr__')
-    currentTrack = reaper.getSelectedTrack(0, 0)
-
-    reaper.setTrackColor(currentTrack, 1)
-
-    if receivingTrack == false then
-        reaper.showMessageBox('Could not find receiving track.')
-        return
+        _, localTrackName = reaper.GetTrackName(track, "")
+        if localTrackName == trackName then
+            return track
+        end
     end
 
-    sendIndex = reaper.createTrackSend(currentTrack, receivingTrack)
+    reaper.ShowMessageBox("Could not find track with name: " .. trackName, "track not found", 0)
+
+    return false
+end
+function main()
+    receivingTrack = findTrack('snare-bus __dr__')
+    currentTrack = reaper.GetSelectedTrack(0, 0)
+
+    reaper.SetTrackColor(currentTrack, 1)
+
+
+    sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
 
     if (sendIndex == 0) then
-        reaper.showMessageBox('Coud not create send.')
+        reaper.ShowMessageBox('Coud not create send.')
     end
 
     reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, "I_SENDMODE", 0)

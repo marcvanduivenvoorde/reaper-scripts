@@ -14,3 +14,5 @@ function findTrack.find(trackName)
 
     return false
 end
+
+return findTrack

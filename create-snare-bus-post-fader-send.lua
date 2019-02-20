@@ -1,4 +1,4 @@
-require "findTrack"
+findTrack = require "findTrack"
 
 function main()
     receivingTrack = findTrack.find('snare-bus __dr__')

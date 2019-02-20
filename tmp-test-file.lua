@@ -13,6 +13,7 @@ function main()
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
 
     reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "snare __dr__", true)
+    reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", false, true)
     reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, "I_SENDMODE", 0)
 
     if (sendIndex == 0) then

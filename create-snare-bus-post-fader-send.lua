@@ -1,20 +1,7 @@
-function findTrack(trackName)
-    for trackId = 0, reaper.CountTracks(0) - 1 do
-        track = reaper.GetTrack(0, trackId)
-
-        _, localTrackName = reaper.GetTrackName(track, "")
-        if localTrackName == trackName then
-            return track
-        end
-    end
-
-    reaper.ShowMessageBox("Could not find track with name: " .. trackName, "track not found", 0)
-
-    return false
-end
+require "findTrack"
 
 function main()
-    receivingTrack = findTrack('snare-bus __dr__')
+    receivingTrack = findTrack.find('snare-bus __dr__')
     currentTrack = reaper.GetSelectedTrack(0, 0)
 
     reaper.SetTrackColor(currentTrack, 26316)

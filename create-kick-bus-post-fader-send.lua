@@ -17,13 +17,13 @@ end
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    receivingTrack = findTrack('snare-bus __dr__')
+    receivingTrack = findTrack('kick-bus __dr__')
     currentTrack = reaper.GetSelectedTrack(0, 0)
 
     reaper.SetTrackColor(currentTrack, 26316)
 
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
-    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "snare __dr__", true)
+    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", "kick __dr__", true)
 
     if (sendIndex == 0) then
         reaper.ShowMessageBox('Could not create send.')

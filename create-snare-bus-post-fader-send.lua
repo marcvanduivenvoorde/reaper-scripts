@@ -1,5 +1,4 @@
-package.path = package.path .. ";" .. lib.abspath(".") .. "/?.lua"
-findTrack = require("findTrack")
+findTrack = require("libraries.findTrack")
 
 function main()
     receivingTrack = findTrack.find('snare-bus __dr__')

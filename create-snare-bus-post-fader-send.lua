@@ -1,4 +1,5 @@
-findTrack = require "findTrack"
+local thispath = select('1', ...):match(".+%.") or ""
+findTrack = require(thispath.."findTrack")
 
 function main()
     receivingTrack = findTrack.find('snare-bus __dr__')

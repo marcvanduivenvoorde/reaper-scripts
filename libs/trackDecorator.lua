@@ -56,7 +56,7 @@ function trackDecorator.decorateVocal(currentTrack)
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal __vox__')
 end
 
-function createPostFaderSend(currentTrack, receivingTrack)
+function trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
     sendIndex = reaper.CreateTrackSend(currentTrack, receivingTrack)
     reaper.SetTrackSendInfo_Value(currentTrack, 0, sendIndex, "I_SENDMODE", 0)
 end

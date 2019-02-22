@@ -10,7 +10,7 @@ function main()
     currentTrack = reaper.GetSelectedTrack(0, 0)
 
     trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
-    trackDecorator.decorateSnare(currentTrack)
+    trackDecorator.decorateVocal(currentTrack)
 end
 
 reaper.defer(main)

@@ -11,6 +11,13 @@ trackDecorator.vca.guitars = 2
 trackDecorator.vca.bass = 3
 trackDecorator.vca.vocals = 4
 
+function trackDecorator.prepareTrack(sendTrack)
+    receivingTrack = trackFinder.find(sendTrack)
+    currentTrack = reaper.GetSelectedTrack(0, 0)
+
+    trackDecorator.clearAllSends(currentTrack)
+    trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
+end
 
 function trackDecorator.decorateSnare(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
@@ -72,6 +79,13 @@ function trackDecorator.decorateVocal(currentTrack)
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.vocals)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal __vox__')
+end
+
+function trackDecorator.decorateDrumReverb(currentTrack)
+    reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
+    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
+
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'drum reverb __dr__')
 end
 
 function trackDecorator.addToVcaGroup(currentTrack, group)

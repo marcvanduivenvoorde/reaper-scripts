@@ -6,8 +6,8 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('guitar-bus __gtr__')
-    trackDecorator.decorateGuitar(currentTrack)
+    trackDecorator.prepareTrack('overhead-bus __dr__')
+    trackDecorator.decorateOverhead(currentTrack)
 end
 
 reaper.defer(main)

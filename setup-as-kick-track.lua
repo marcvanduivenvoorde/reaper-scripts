@@ -6,11 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    receivingTrack = trackFinder.find('kick-bus __dr__')
-    currentTrack = reaper.GetSelectedTrack(0, 0)
-
-    trackDecorator.clearAllSends(currentTrack)
-    trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
+    trackDecorator.prepareTrack('kick-bus __dr__')
     trackDecorator.decorateKick(currentTrack)
 end
 

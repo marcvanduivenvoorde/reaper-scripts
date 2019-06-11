@@ -92,6 +92,8 @@ function trackDecorator.addToVcaGroup(currentTrack, group)
     setValue = 1 << (group -1)
 
     reaper.GetSetTrackGroupMembership(currentTrack, "VOLUME_VCA_SLAVE", setValue, setValue)
+    reaper.GetSetTrackGroupMembership(currentTrack, "SOLO_SLAVE", setValue, setValue)
+    reaper.GetSetTrackGroupMembership(currentTrack, "MUTE_SLAVE", setValue, setValue)
 end
 
 function trackDecorator.clearAllSends(currentTrack)

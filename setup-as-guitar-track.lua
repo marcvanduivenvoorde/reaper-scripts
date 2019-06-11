@@ -6,7 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('guitar-bus __gtr__')
+    trackDecorator.prepareTrack('guitar-bus __gtr__ __mbus__')
     trackDecorator.decorateGuitar(currentTrack)
 end
 

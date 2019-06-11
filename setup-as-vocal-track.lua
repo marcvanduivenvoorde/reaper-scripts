@@ -6,7 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('vocal-bus __vox__')
+    trackDecorator.prepareTrack('vocal-bus __vox__ __mbus__')
     trackDecorator.decorateVocal(currentTrack)
 end
 

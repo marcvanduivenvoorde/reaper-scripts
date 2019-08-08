@@ -6,7 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('kick-bus __dr__')
+    trackDecorator.prepareTrack('kick-bus __dr__ __kick__')
     trackDecorator.decorateKick(currentTrack)
 end
 

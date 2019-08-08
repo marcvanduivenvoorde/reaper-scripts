@@ -6,7 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('room-bus __dr__')
+    trackDecorator.prepareTrack('room-bus __dr__ __room__')
     trackDecorator.decorateRoom(currentTrack)
 end
 

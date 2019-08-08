@@ -6,7 +6,7 @@ trackDecorator = require('libs.trackDecorator')
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    trackDecorator.prepareTrack('overhead-bus __dr__')
+    trackDecorator.prepareTrack('overhead-bus __dr__ __oh__')
     trackDecorator.decorateOverhead(currentTrack)
 end
 

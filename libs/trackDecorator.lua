@@ -22,45 +22,33 @@ function trackDecorator.prepareTrack(sendTrack)
     trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
 end
 
+function sendParallelProcessTrack(currentTrack, sendTrack)
+    if trackFinder.exists(sendTrack) then
+        parallelProcessTrack = trackFinder.find(sendTrack)
+
+        trackDecorator.createPostFaderSend(currentTrack, parallelProcessTrack);
+    end
+end
+
 function trackDecorator.decorateSnare(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
+    trackDecorator.prepareParallelDrumTrack(currentTrack)
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'snare-paracomp __dr__ __snare__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'snare-reverb __dr__ __snare__')
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'snare', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'snare', '__dr__ __snare__')
 end
 
 function trackDecorator.prepareParallelDrumTrack(currentTrack)
-    if trackFinder.exists('drum-paracomp __dr__') then
-        paracompTrack = trackFinder.find('drum-paracomp __dr__')
-
-        trackDecorator.createPostFaderSend(currentTrack, paracompTrack);
-    end
-
-    if trackFinder.exists('drum-reverb __dr__') then
-        paracompTrack = trackFinder.find('drum-reverb __dr__')
-
-        trackDecorator.createPostFaderSend(currentTrack, paracompTrack);
-    end
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'drum-paracomp __dr__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'drum-reverb __dr__')
 end
 
 function trackDecorator.prepareParallelVocalTrack(currentTrack)
-    if trackFinder.exists('vocal-paracomp __vox__') then
-        paracompTrack = trackFinder.find('vocal-paracomp __vox__')
-
-        trackDecorator.createPostFaderSend(currentTrack, paracompTrack);
-    end
-
-    if trackFinder.exists('vocal-reverb __vox__') then
-        paracompTrack = trackFinder.find('vocal-reverb __vox__')
-
-        trackDecorator.createPostFaderSend(currentTrack, paracompTrack);
-    end
-
-    if trackFinder.exists('vocal-delay __vox__') then
-        paracompTrack = trackFinder.find('vocal-reverb __vox__')
-
-        trackDecorator.createPostFaderSend(currentTrack, paracompTrack);
-    end
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'vocal-paracomp __vox__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'vocal-reverb __vox__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'vocal-delay __vox__')
 end
 
 function trackDecorator.decorateKick(currentTrack)
@@ -68,7 +56,7 @@ function trackDecorator.decorateKick(currentTrack)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
 
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'kick', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'kick', '__dr__ __kick__')
 end
 
 function trackDecorator.decorateTom(currentTrack)
@@ -76,7 +64,7 @@ function trackDecorator.decorateTom(currentTrack)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'tom', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'tom', '__dr__ __tom__')
 end
 
 function trackDecorator.decorateOverhead(currentTrack)
@@ -84,7 +72,7 @@ function trackDecorator.decorateOverhead(currentTrack)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'overhead', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'overhead', '__dr__ __oh__')
 end
 
 function trackDecorator.decorateRoom(currentTrack)
@@ -92,7 +80,7 @@ function trackDecorator.decorateRoom(currentTrack)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'room', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'room', '__dr__ __room__')
 end
 
 function trackDecorator.decorateGuitar(currentTrack)
@@ -113,7 +101,7 @@ function trackDecorator.decorateSynth(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.synth)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.synth, 'synth', '__syn__ __gtrs__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.synth, 'synth', '__syn__')
 end
 
 function trackDecorator.decorateBass(currentTrack)

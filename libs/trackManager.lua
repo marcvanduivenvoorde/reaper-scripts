@@ -9,11 +9,11 @@ function trackManager.showAllTracks()
         -- when __ignore__ is not found in trackname then show
         -- else hide the track
         if string.match(localTrackName, '__ignore__') == nil then
-            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 0)
-            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 0)
-        else
             reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 1)
             reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 1)
+        else
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 0)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 0)
         end
     end
 end

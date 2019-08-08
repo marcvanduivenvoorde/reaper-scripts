@@ -27,15 +27,15 @@ function trackManager.showTracksByTag(tag)
         -- when tag is not found in trackname, then hide it
         -- otherwise show it.
         if string.match(localTrackName, tag) == nil then
-            reaper.SetMediaTrackInfoValue(track, "B_SHOWINMIXER", 0)
-            reaper.SetMediaTrackInfoValue(track, "B_SHOWINTCP", 0)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 0)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 0)
         else
-            reaper.SetMediaTrackInfoValue(track, "B_SHOWINMIXER", 1)
-            reaper.SetMediaTrackInfoValue(track, "B_SHOWINTCP", 1)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 1)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 1)
         end
 
         if string.match(localTrackName, '__sep__') ~= nil then
-            reaper.SetMediaTrackInfoValue(track, "B_SHOWINMIXER", 1)
+            reaper.SetMediaTrackInfo_Value(track, "B_SHOWINMIXER", 1)
         end
     end
 

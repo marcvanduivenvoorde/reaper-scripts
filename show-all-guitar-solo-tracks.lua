@@ -3,8 +3,8 @@ package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;
 trackManager = require("libs.trackManager")
 
 function main()
-    trackManager.showAllTracks()
-    trackManager.showTracksByTag('__mbus__')
+    trackmanager.showAllTracks()
+    trackManager.showTracksByTag('__gtrs__')
 end
 
 reaper.defer(main)

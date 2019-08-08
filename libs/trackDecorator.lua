@@ -24,7 +24,7 @@ function trackDecorator.prepareTrack(sendTrack)
     trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
 end
 
-function sendParallelProcessTrack(currentTrack, sendTrack)
+function trackDecorator.sendParallelProcessTrack(currentTrack, sendTrack)
     if trackFinder.exists(sendTrack) then
         parallelProcessTrack = trackFinder.find(sendTrack)
 
@@ -94,9 +94,12 @@ end
 
 function trackDecorator.decorateGuitarSolo(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
-    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.guitars)
+    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.guitarsolo)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitarsolo, 'guitar', '__gtr__ __gtrs__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'guitar-solo-delay __gtr__ __gtrs__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'guitar-solo-reverb __gtr__ __gtrs__')
+
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitarsolo, 'guitar solo', '__gtr__ __gtrs__')
 end
 
 function trackDecorator.decorateSynth(currentTrack)
@@ -121,12 +124,16 @@ function trackDecorator.decorateVocal(currentTrack)
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal', '__vox__')
 end
 
-function trackDecorator.decorateDrumReverb(currentTrack)
+function trackDecorator.decorateBackupVocal(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
-    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'backup-vocal-delay __vox__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'backup-vocal-reverb __vox__')
+    trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.vocals)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'drum reverb', '__dr__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal', '__vox__')
 end
+
+
 
 function trackDecorator.addToVcaGroup(currentTrack, group)
     setValue = 1 << (group -1)
@@ -154,7 +161,7 @@ function trackDecorator.decorate(currentTrack, color, name, postfix)
     _, localTrackName = reaper.GetTrackName(currentTrack, "")
 
     prefix = localTrackName
-    if string.match(localTrackName, '') ~= nil then
+    if string.len(localTrackName) == 0 then
         prefix = name
     end
 

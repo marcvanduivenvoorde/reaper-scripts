@@ -4,7 +4,7 @@ trackManager = require("libs.trackManager")
 
 function main()
     trackManager.showAllTracks()
-    trackManager.showTracksByTag('__mbus__')
+    trackManager.showTracksByTag('__snare__')
 end
 
 reaper.defer(main)

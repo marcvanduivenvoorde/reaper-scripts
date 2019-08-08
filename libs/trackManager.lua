@@ -1,6 +1,6 @@
 local trackManager = {}
 
-function trackmanager.showAllTracks()
+function trackManager.showAllTracks()
     for trackId = 0, reaper.CountTracks(0) - 1 do
         track = reaper.GetTrack(0, trackId)
 
@@ -16,7 +16,7 @@ function trackmanager.showAllTracks()
     end
 end
 
-function trackmanager.showTracksByTag(tag)
+function trackManager.showTracksByTag(tag)
     trackManager.showAllTracks();
 
     for trackId = 0, reaper.CountTracks(0) - 1 do

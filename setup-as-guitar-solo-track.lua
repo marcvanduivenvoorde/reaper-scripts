@@ -7,7 +7,7 @@ trackDecorator = require('libs.trackDecorator')
 -- add a postfader send to the snare bus track
 function main()
     trackDecorator.prepareTrack('guitar-solo-bus __gtr__ __mbus__')
-    trackDecorator.decorateGuitar(currentTrack)
+    trackDecorator.decorateGuitarSolo(currentTrack)
 end
 
 reaper.defer(main)

@@ -10,9 +10,11 @@ trackDecorator.colors.vocals = 12619858
 trackDecorator.colors.synth = 16724991
 trackDecorator.vca.drums = 1
 trackDecorator.vca.guitars = 2
-trackDecorator.vca.bass = 3
-trackDecorator.vca.vocals = 4
-trackDecorator.vca.synth = 5
+trackDecorator.vca.guitarsolo = 3
+trackDecorator.vca.bass = 4
+trackDecorator.vca.vocals = 5
+trackDecorator.vca.backupvocals = 6
+trackDecorator.vca.synth = 7
 
 function trackDecorator.prepareTrack(sendTrack)
     receivingTrack = trackFinder.find(sendTrack)

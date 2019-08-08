@@ -33,6 +33,10 @@ function trackmanager.showTracksByTag(tag)
             reaper.SetMediaTrackInfoValue(track, "B_SHOWINMIXER", 1)
             reaper.SetMediaTrackInfoValue(track, "B_SHOWINTCP", 1)
         end
+
+        if string.match(localTrackName, '__sep__') ~= nil then
+            reaper.SetMediaTrackInfoValue(track, "B_SHOWINMIXER", 1)
+        end
     end
 
 end

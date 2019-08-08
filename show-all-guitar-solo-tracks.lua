@@ -3,7 +3,7 @@ package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;
 trackManager = require("libs.trackManager")
 
 function main()
-    trackmanager.showAllTracks()
+    trackManager.showAllTracks()
     trackManager.showTracksByTag('__gtrs__')
 end
 

@@ -14,4 +14,18 @@ function trackFinder.find(trackName)
 
     return false
 end
+
+function trackFinder.exists(trackName)
+    for trackId = 0, reaper.CountTracks(0) - 1 do
+        track = reaper.GetTrack(0, trackId)
+
+        _, localTrackName = reaper.GetTrackName(track, "")
+        if localTrackName == trackName then
+            return true
+        end
+    end
+
+    return false
+
+end
 return trackFinder

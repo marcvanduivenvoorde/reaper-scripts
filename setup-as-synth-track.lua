@@ -1,16 +1,13 @@
 package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;".. package.path
 
-trackFinder = require("libs.TrackFinder")
+trackFinder = require("libs.trackFinder")
 trackDecorator = require('libs.trackDecorator')
 
 -- setup the track color for the new track
 -- add a postfader send to the snare bus track
 function main()
-    receivingTrack = trackFinder.find('snare-bus __dr__')
-    currentTrack = reaper.GetSelectedTrack(0, 0)
-
-    trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
-    trackDecorator.decorateSnare(currentTrack)
+    trackDecorator.prepareTrack('synth-bus __syn__ __mbus__')
+    trackDecorator.decorateSynth(currentTrack)
 end
 
 reaper.defer(main)

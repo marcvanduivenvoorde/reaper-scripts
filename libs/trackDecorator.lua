@@ -166,7 +166,7 @@ function trackDecorator.decorate(currentTrack, color, name, postfix)
     end
 
     reaper.SetTrackColor(currentTrack, color)
-    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", prefix .. postfix, true)
+    reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", prefix .. ' ' .. postfix, true)
 end
 
 return trackDecorator

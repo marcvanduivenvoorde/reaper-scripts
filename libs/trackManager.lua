@@ -16,6 +16,8 @@ function trackManager.showAllTracks()
             reaper.SetMediaTrackInfo_Value(track, "B_SHOWINTCP", 0)
         end
     end
+
+    reaper.TrackList_AdjustWindows(false)
 end
 
 function trackManager.showTracksByTag(tag)
@@ -41,6 +43,7 @@ function trackManager.showTracksByTag(tag)
         end
     end
 
+    reaper.TrackList_AdjustWindows(false)
 end
 
 return trackManager

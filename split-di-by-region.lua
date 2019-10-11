@@ -69,6 +69,7 @@ end
 local function clearTrackItems(track)
     retval, trackName = reaper.GetTrackName(track)
     reaper.Main_OnCommandEx(40289, 0, 0) -- unselect all items
+    local itemsToDelete = {};
 
     if has_value(regionTrackList, trackName) then
         reaper.SetOnlyTrackSelected(track, true)
@@ -84,19 +85,26 @@ local function clearTrackItems(track)
                 reaper.ShowConsoleMsg('about to remove ' .. name .. ' in ' .. trackName .. "\n")
                 for item = 0, trackItems do
                     mediaItem = reaper.GetTrackMediaItem(track, item)
-                    reaper.SetMediaItemSelected(mediaItem, true)
 
                     itemStart = reaper.GetMediaItemInfo_Value(mediaItem, 'D_POSITION')
                     itemLength = reaper.GetMediaItemInfo_Value(mediaItem, 'D_LENGTH')
                     itemEnd = itemStart + itemLength
 
                     if name ~= trackName and itemStart == pos and itemEnd == rgnend then
+                        reaper.SetMediaItemSelected(mediaItem, true)
                         reaper.ShowConsoleMsg('removing ' .. name .. ' in ' ..trackName.. "\n")
-                        reaper.DeleteTrackMediaItem(track, mediaItem)
                     end
                 end
             end
         end
+    end
+
+    for i = 0, reaper.CountSelectedMediaItems(0) - 1 do
+        table.insert(itemsToDelete, reaper.GetSelectedMediaItem(0, i))
+    end
+
+    for i, item in ipairs(itemsToDelete) do
+        reaper.DeleteTrackMediaItem(track, item)
     end
 end
 

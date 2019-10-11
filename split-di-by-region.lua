@@ -83,8 +83,6 @@ local function clearTrackItems(track)
 
                 reaper.ShowConsoleMsg('about to remove ' .. name .. ' in ' .. trackName .. "\n")
                 for item = 0, trackItems do
-                    reaper.SetMediaItemSelected(mediaItem, false)
-
                     mediaItem = reaper.GetTrackMediaItem(track, item)
                     reaper.SetMediaItemSelected(mediaItem, true)
 

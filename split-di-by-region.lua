@@ -31,6 +31,7 @@ end
 -- split a track at the region edges
 local function splitTrackAtRegion(track, regionIndex)
     retval, isrgn, pos, rgnend, name, markrgnindexnumber = reaper.EnumProjectMarkers(regionIndex)
+    reaper.Main_OnCommandEx(40289, 0, 0) -- unselect all items
 
     if isrgn and has_value(regionTrackList, name) then
         trackItems = reaper.CountTrackMediaItems(track) - 1
@@ -67,6 +68,8 @@ end
 -- remove unmatched media items from tracks.
 local function clearTrackItems(track)
     retval, trackName = reaper.GetTrackName(track)
+    reaper.Main_OnCommandEx(40289, 0, 0) -- unselect all items
+
     if has_value(regionTrackList, trackName) then
         reaper.SetOnlyTrackSelected(track, true)
 

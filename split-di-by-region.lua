@@ -127,7 +127,7 @@ local function splitTracks()
         clearTrackItems(track)
     end
 
-    reaper.Undo_EndBlock()
+    reaper.Undo_EndBlock('Splitting di tracks', -1)
 end
 
 reaper.defer(splitTracks)

@@ -1,11 +1,17 @@
 
-
 regionTrackList = {
     'gtr-di-clean',
+    'gtr-di-clean-2',
+    'gtr-di-clean-3',
     'gtr-di-crunch',
+    'gtr-di-crunch-2',
+    'gtr-di-crunch-3',
     'gtr-di-distortion',
     'gtr-di-distortion-2',
+    'gtr-di-distortion-3',
 }
+
+timeOffset = 0.005
 
 -- does the value exist in a list
 function has_value (tab, val)
@@ -35,7 +41,16 @@ local function splitTrackAtRegion(track, regionIndex)
 
     if isrgn and has_value(regionTrackList, name) then
         trackItems = reaper.CountTrackMediaItems(track) - 1
-        reaper.GetSet_LoopTimeRange(true, true, pos, rgnend, false)
+
+        if name == trackName then
+            sliceStart = pos - timeOffset
+            sliceEnd = rgnend + timeOffset
+        else
+            sliceStart = pos + timeOffset
+            sliceEnd = rgnend - timeOffset
+        end
+
+        reaper.GetSet_LoopTimeRange(true, true, sliceStart, sliceEnd, false)
 
         for item = 0, trackItems do
             mediaItem = reaper.GetTrackMediaItem(track, item)
@@ -90,7 +105,7 @@ local function clearTrackItems(track)
                     itemLength = reaper.GetMediaItemInfo_Value(mediaItem, 'D_LENGTH')
                     itemEnd = itemStart + itemLength
 
-                    if name ~= trackName and itemStart == pos and itemEnd == rgnend then
+                    if name ~= trackName and itemStart >= pos - timeOffset and itemEnd <= rgnend + timeOffset then
                         reaper.SetMediaItemSelected(mediaItem, true)
                         reaper.ShowConsoleMsg('removing ' .. name .. ' in ' ..trackName.. "\n")
                     end
@@ -119,11 +134,6 @@ local function splitTracks()
     for trackId = 0, allTracks do
         track = reaper.GetTrack(0, trackId)
         splitTrack(track)
-    end
-
-
-    for trackId = 0, allTracks do
-        track = reaper.GetTrack(0, trackId)
         clearTrackItems(track)
     end
 

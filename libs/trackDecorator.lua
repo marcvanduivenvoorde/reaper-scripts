@@ -93,6 +93,8 @@ function trackDecorator.decorateGuitar(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.guitars)
 
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'guitar-reverb __gtr__')
+
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitars, 'guitar', '__gtr__')
 end
 
@@ -116,6 +118,8 @@ end
 function trackDecorator.decorateBass(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.bass)
+
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'bass-reverb __bass__')
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.bass, 'bass', '__bass__')
 end

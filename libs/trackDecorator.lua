@@ -38,6 +38,7 @@ function trackDecorator.decorateSnare(currentTrack)
     trackDecorator.prepareParallelDrumTrack(currentTrack)
     trackDecorator.sendParallelProcessTrack(currentTrack, 'snare-paracomp __dr__ __snare__')
     trackDecorator.sendParallelProcessTrack(currentTrack, 'snare-reverb __dr__ __snare__')
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'drum-shell-snap __dr__');
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'snare', '__dr__ __snare__')
 end
@@ -56,6 +57,7 @@ end
 function trackDecorator.decorateKick(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'drum-shell-snap __dr__');
 
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'kick', '__dr__ __kick__')
@@ -64,6 +66,8 @@ end
 function trackDecorator.decorateTom(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
     trackDecorator.prepareParallelDrumTrack(currentTrack);
+    trackDecorator.sendParallelProcessTrack(currentTrack, 'drum-shell-snap __dr__');
+
     trackDecorator.addToVcaGroup(currentTrack, trackDecorator.vca.drums)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'tom', '__dr__ __tom__')

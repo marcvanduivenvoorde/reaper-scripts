@@ -1,7 +1,7 @@
 
 function main()
     local color = 15790839
-    reaper.Main_OnCommandEx(40901, 0, 0);
+    reaper.Main_OnCommandEx(40901, 0, 0) -- freeze selected tracks
     trackCount = reaper.CountTracks(0) - 1
 
     for trackId = 0, trackCount do

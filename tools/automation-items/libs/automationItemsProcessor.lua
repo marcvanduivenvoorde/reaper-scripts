@@ -35,13 +35,11 @@ function automationItemsProcessor.processAutomationItems(envelopes, pooled)
                 envelope = reaper.GetTrackEnvelope(track, envelopeId)
                 _ret, envelopeName = reaper.GetEnvelopeName(envelope)
 
-                for index, requestedEnvelope in ipairs(envelopes) do
-                    if automationItemsProcessor.hasEnvelope(envelopes, requestedEnvelope) then
-                        itemId = reaper.InsertAutomationItem(envelope, poolId, timeStart, timeEnd - timeStart)
+                if automationItemsProcessor.hasEnvelope(envelopes, envelopeName) then
+                    itemId = reaper.InsertAutomationItem(envelope, poolId, timeStart, timeEnd - timeStart)
 
-                        if pooled == true then
-                            poolId = math.floor(reaper.GetSetAutomationItemInfo(envelope, itemId, 'D_POOL_ID', 0, false))
-                        end
+                    if pooled == true then
+                        poolId = math.floor(reaper.GetSetAutomationItemInfo(envelope, itemId, 'D_POOL_ID', 0, false))
                     end
                 end
             end

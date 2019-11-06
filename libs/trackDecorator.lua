@@ -15,6 +15,8 @@ trackDecorator.vca.bass = 4
 trackDecorator.vca.vocals = 5
 trackDecorator.vca.backupvocals = 6
 trackDecorator.vca.synth = 7
+trackDecorator.vca.snare = 8
+trackDecorator.vca.kick = 9
 
 function trackDecorator.prepareTrack(sendTrack)
     receivingTrack = trackFinder.find(sendTrack)

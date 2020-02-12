@@ -1,8 +1,3 @@
-function setTrackOffLine()
-
-end
-
-
 function main()
     reaper.Undo_BeginBlock()
     trackCount = reaper.CountTracks(0) - 1

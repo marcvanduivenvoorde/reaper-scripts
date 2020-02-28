@@ -19,7 +19,7 @@ trackDecorator.group.snare = 8
 trackDecorator.group.kick = 9
 trackDecorator.group.busses = 10
 trackDecorator.group.hidden = 11
-trackDecorator.group.kickbus = 32
+trackDecorator.group.kickbus = 47
 trackDecorator.group.snarebus = 33
 trackDecorator.group.tombus = 34
 trackDecorator.group.overheadbus = 35
@@ -33,7 +33,7 @@ trackDecorator.group.synthbus = 42
 trackDecorator.group.vocallead1bus = 43
 trackDecorator.group.vocallead2bus = 44
 trackDecorator.group.vocalharmonybus = 45
-trackDecorator.group.vocalbackupbus = 45
+trackDecorator.group.vocalbackupbus = 46
 
 function trackDecorator.setupTrackDefaults(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, 'I_NCHAN', 4) -- set track to 4 channels

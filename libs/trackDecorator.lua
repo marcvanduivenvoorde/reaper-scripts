@@ -22,6 +22,8 @@ function trackDecorator.prepareTrack(sendTrack)
     receivingTrack = trackFinder.find(sendTrack)
     currentTrack = reaper.GetSelectedTrack(0, 0)
 
+    reaper.SetMediaTrackInfo_Value(currentTrack, 'I_NCHAN', 4);
+
     trackDecorator.clearAllSends(currentTrack)
     trackDecorator.createPostFaderSend(currentTrack, receivingTrack)
 end

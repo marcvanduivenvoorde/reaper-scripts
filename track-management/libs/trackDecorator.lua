@@ -174,4 +174,12 @@ function trackDecorator.addToGroup(currentTrack, group)
     reaper.GetSetTrackGroupMembership(currentTrack, "MUTE_SLAVE", setValue, setValue)
 end
 
+function trackDecorator.removeFromGroup(currentTrack, group)
+    setValue = 1 << (group -1)
+
+    reaper.GetSetTrackGroupMembership(currentTrack, "VOLUME_SLAVE", setValue, 0)
+    reaper.GetSetTrackGroupMembership(currentTrack, "SOLO_SLAVE", setValue, 0)
+    reaper.GetSetTrackGroupMembership(currentTrack, "MUTE_SLAVE", setValue, 0)
+end
+
 return trackDecorator

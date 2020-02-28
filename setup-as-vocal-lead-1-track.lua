@@ -16,11 +16,11 @@ function main()
 
         if reaper.IsTrackSelected(track) then
             trackDecorator.setupTrackDefaults(track)
-            trackDecorator.decorateRoom(track)
+            trackDecorator.decorateVocalLeadOne(track)
         end
     end
 
-    reaper.Undo_EndBlock('Setting up drum room tracks', -1)
+    reaper.Undo_EndBlock('Setting up vocal lead 1 tracks', -1)
 end
 
 reaper.defer(main)

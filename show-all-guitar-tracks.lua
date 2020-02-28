@@ -3,8 +3,9 @@ package.path = debug.getinfo(1,"S").source:match[[^@?(.*[\/])[^\/]-$]] .."?.lua;
 trackManager = require("libs.trackManager")
 
 function main()
-    trackManager.showAllTracks()
-    trackManager.showTracksByTag('__gtr__')
+    trackManager.hideAllTracks()
+    trackManager.showTracksByGroup(trackDecorator.group.guitars)
+    trackManager.hideTracksByGroup(trackDecorator.group.hidden)
 end
 
 reaper.defer(main)

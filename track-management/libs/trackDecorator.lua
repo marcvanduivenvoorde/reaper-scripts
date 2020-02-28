@@ -41,15 +41,18 @@ end
 
 function trackDecorator.createSendToGroupMaster(currentTrack, group)
     trackCount = reaper.CountTracks(0) - 1
-    groupBit = 1 << (group -1)
+    groupBit = 1 << (group - 32 -1)
+    groupRes = math.floor(2^((group - 32) - 1))
 
     for trackId = 0, trackCount do
         track = reaper.GetTrack(0, trackId)
 
-        res = reaper.GetSetTrackGroupMembership(track, 'VOLUME_MASTER', groupBit, 0)
+        res = reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, 0)
+	
+	-- reaper.ShowConsoleMsg(res .. " : " .. groupRes ..  "\n")
+        if res == groupRes then
 
-        if res ~= 0 then
-            reaper.GetSetTrackGroupMembership(track, 'VOLUME_MASTER', groupBit, groupBit)
+            reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, groupBit)
             trackDecorator.createPostFaderSend(currentTrack, track)
         end
     end
@@ -159,8 +162,6 @@ function trackDecorator.decorate(currentTrack, color, name)
     if string.len(localTrackName) == 0 or string.find(localTrackName, 'Track ') ~= nil then
         prefix = name
     end
-
-    reaper.ShowConsoleMsg(name .. "\n" .. prefix .. "\n")
 
     reaper.SetTrackColor(currentTrack, color)
     reaper.GetSetMediaTrackInfo_String(currentTrack, "P_NAME", prefix, true)

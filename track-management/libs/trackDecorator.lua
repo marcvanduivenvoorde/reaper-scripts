@@ -47,12 +47,12 @@ function trackDecorator.createSendToGroupMaster(currentTrack, group)
     for trackId = 0, trackCount do
         track = reaper.GetTrack(0, trackId)
 
-        res = reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, 0)
-	
+        res = reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, 0)
+
 	-- reaper.ShowConsoleMsg(res .. " : " .. groupRes ..  "\n")
         if res == groupRes then
 
-            reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, groupBit)
+            reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, groupBit)
             trackDecorator.createPostFaderSend(currentTrack, track)
         end
     end
@@ -170,7 +170,6 @@ end
 function trackDecorator.addToGroup(currentTrack, group)
     setValue = 1 << (group -1)
 
-    reaper.GetSetTrackGroupMembership(currentTrack, "VOLUME_SLAVE", setValue, setValue)
     reaper.GetSetTrackGroupMembership(currentTrack, "SOLO_SLAVE", setValue, setValue)
     reaper.GetSetTrackGroupMembership(currentTrack, "MUTE_SLAVE", setValue, setValue)
 end

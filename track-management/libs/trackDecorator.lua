@@ -127,14 +127,14 @@ function trackDecorator.decorateBass(currentTrack)
 end
 
 function trackDecorator.decorateVocalLeadOne(currentTrack)
-    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocal)
+    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocals)
     trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.vocallead1bus)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal')
 end
 
 function trackDecorator.decorateVocalLeadTwo(currentTrack)
-    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocal)
+    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocals)
     trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.vocallead2bus)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal')
@@ -143,7 +143,7 @@ end
 
 function trackDecorator.decorateBackupVocal(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, "B_MAINSEND", 0)
-    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocal)
+    trackDecorator.addToGroup(currentTrack, trackDecorator.group.vocals)
     trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.vocalbackupbus)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.vocals, 'vocal backup')

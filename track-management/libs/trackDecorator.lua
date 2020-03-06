@@ -50,9 +50,7 @@ function trackDecorator.createSendToGroupMaster(currentTrack, group)
 
         res = reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, 0)
 
-	-- reaper.ShowConsoleMsg(res .. " : " .. groupRes ..  "\n")
         if res == groupRes then
-
             reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, groupBit)
             trackDecorator.createPostFaderSend(currentTrack, track)
         end
@@ -80,7 +78,7 @@ function trackDecorator.decorateTom(currentTrack)
     trackDecorator.addToGroup(currentTrack, trackDecorator.group.drums)
     trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.tombus)
 
-    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'tom', '__dr__ __tom__')
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.drums, 'tom')
 end
 
 function trackDecorator.decorateOverhead(currentTrack)

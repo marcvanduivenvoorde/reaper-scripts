@@ -34,6 +34,7 @@ trackDecorator.group.vocallead1bus = 43
 trackDecorator.group.vocallead2bus = 44
 trackDecorator.group.vocalharmonybus = 45
 trackDecorator.group.vocalbackupbus = 46
+trackDecorator.group.acousticguitarbus = 48
 
 function trackDecorator.setupTrackDefaults(currentTrack)
     reaper.SetMediaTrackInfo_Value(currentTrack, 'I_NCHAN', 4) -- set track to 4 channels
@@ -47,12 +48,12 @@ function trackDecorator.createSendToGroupMaster(currentTrack, group)
     for trackId = 0, trackCount do
         track = reaper.GetTrack(0, trackId)
 
-        res = reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, 0)
-	
+        res = reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, 0)
+
 	-- reaper.ShowConsoleMsg(res .. " : " .. groupRes ..  "\n")
         if res == groupRes then
 
-            reaper.GetSetTrackGroupMembershipHigh(track, 'VOLUME_MASTER', groupBit, groupBit)
+            reaper.GetSetTrackGroupMembershipHigh(track, 'SOLO_SLAVE', groupBit, groupBit)
             trackDecorator.createPostFaderSend(currentTrack, track)
         end
     end
@@ -101,6 +102,20 @@ function trackDecorator.decorateGuitar(currentTrack)
     trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.guitarbus)
 
     return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitars, 'guitar')
+end
+
+function trackDecorator.decorateGuitarHarmony(currentTrack)
+    trackDecorator.addToGroup(currentTrack, trackDecorator.group.guitars)
+    trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.guitarharmonybus)
+
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitars, 'guitar')
+end
+
+function trackDecorator.decorateAcousticGuitar(currentTrack)
+    trackDecorator.addToGroup(currentTrack, trackDecorator.group.guitars)
+    trackDecorator.createSendToGroupMaster(currentTrack, trackDecorator.group.acousticguitarbus)
+
+    return trackDecorator.decorate(currentTrack, trackDecorator.colors.guitars, 'acoustic')
 end
 
 function trackDecorator.decorateGuitarSolo(currentTrack)
@@ -170,7 +185,6 @@ end
 function trackDecorator.addToGroup(currentTrack, group)
     setValue = 1 << (group -1)
 
-    reaper.GetSetTrackGroupMembership(currentTrack, "VOLUME_SLAVE", setValue, setValue)
     reaper.GetSetTrackGroupMembership(currentTrack, "SOLO_SLAVE", setValue, setValue)
     reaper.GetSetTrackGroupMembership(currentTrack, "MUTE_SLAVE", setValue, setValue)
 end

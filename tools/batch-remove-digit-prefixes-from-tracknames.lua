@@ -5,14 +5,9 @@ function main()
 
         _, localTrackName = reaper.GetTrackName(track, "")
 
-        reaper.ShowConsoleMsg(localTrackName .. "\n")
         pattern = "^(%s*%d+%s*-?%s*)"
         if string.match(localTrackName, pattern) then
-
             res = string.gsub(localTrackName, pattern, '')
-            reaper.ShowConsoleMsg(res .. "\n")
-
-
             reaper.GetSetMediaTrackInfo_String(track, "P_NAME", res, true)
         end
     end

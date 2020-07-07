@@ -1,7 +1,6 @@
 function main ()
     reaper.Undo_BeginBlock()
 
-
     itemCount = reaper.CountMediaItems(0) - 1
 
     for itemId = 0, itemCount do
@@ -17,10 +16,6 @@ function main ()
     end
 
     reaper.Main_OnCommandEx(40108, 0, 0) -- normalize the selected items
-
-    -- MediaItem reaper.GetMediaItem(ReaProject proj, integer itemidx)
-    -- reaper.SetMediaItemLength(MediaItem item, number length, boolean refreshUI)
-
     reaper.Undo_EndBlock('Split dreamgate', -1)
 end
 

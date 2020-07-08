@@ -7,7 +7,7 @@ function main ()
         item = reaper.GetMediaItem(0, itemId)
 
         if reaper.IsMediaItemSelected(item) then
-            reaper.SetMediaItemLength(item, 0.05, true)
+            reaper.SetMediaItemLength(item, 0.025, true)
             reaper.SetMediaItemInfo_Value(item, 'D_FADEINLEN', 0)
             reaper.SetMediaItemInfo_Value(item, 'D_FADEOUTLEN', 0)
             command = reaper.NamedCommandLookup('_FNG_QUANTIZE_TO_GRID')

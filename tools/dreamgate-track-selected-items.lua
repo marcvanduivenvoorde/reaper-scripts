@@ -20,7 +20,7 @@ function main ()
     reaper.Main_OnCommandEx(40108, 0, 0) -- normalize the selected items
     reaper.UpdateArrange()
 
-    reaper.Undo_EndBlock('Split dreamgate', -1)
+    reaper.Undo_EndBlock('split dreamgate', -1)
 end
 
 reaper.defer(main)

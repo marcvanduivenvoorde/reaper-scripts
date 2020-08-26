@@ -11,7 +11,9 @@ function trackNaming.removeNumericalPrefix(track)
 end
 
 function trackNaming.normalizeToLowercase(track)
-
+    _, localTrackName = reaper.GetTrackName(track, "")
+    res = string.lower(localTrackName)
+    reaper.GetSetMediaTrackInfo_String(track, "P_NAME", res, true)
 end
 
 function removeConsolidatedPostFix(track)
